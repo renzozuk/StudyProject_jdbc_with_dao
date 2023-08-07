@@ -6,8 +6,12 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
-import javax.xml.transform.Result;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -101,7 +105,7 @@ public class SellerDaoJDBC implements SellerDao {
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
-            st = this.conn.prepareStatement(
+            st = conn.prepareStatement(
                     "SELECT seller.*,department.Name as DepName "
                     + "FROM seller INNER JOIN department "
                     + "ON seller.DepartmentId = department.Id "
@@ -146,7 +150,7 @@ public class SellerDaoJDBC implements SellerDao {
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
-            st = this.conn.prepareStatement(
+            st = conn.prepareStatement(
                     "SELECT seller.*,department.Name as DepName "
                             + "FROM seller INNER JOIN department "
                             + "ON seller.DepartmentId = department.Id "
